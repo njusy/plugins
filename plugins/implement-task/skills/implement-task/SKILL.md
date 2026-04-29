@@ -6,7 +6,6 @@ description: Use this skill when the user invokes /implement-task or asks to imp
 # Implement Task
 
 Follow all branch, commit, and PR conventions from CLAUDE.md.
-Do not run test unless explicitly ask to verify code with tests.
 
 ## Step 0 — Detect current repo
 
