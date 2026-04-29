@@ -1,0 +1,18 @@
+{
+  "name": "njusy-plugins",
+  "owner": {
+    "name": "wjankowski",
+    "email": "romuald.wedel@gmail.com"
+  },
+  "description": "Njusy project Claude Code plugins",
+  "plugins": [
+    {
+      "name": "tasks-export",
+      "source": "./plugins/tasks-export",
+      "description": "Distills a session into prioritized tasks and saves them as JSON to ~/tasks/<repo>/",
+      "version": "1.0.0",
+      "author": { "name": "wjankowski" },
+      "keywords": ["tasks", "productivity", "session", "export"]
+    }
+  ]
+}
