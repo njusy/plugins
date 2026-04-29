@@ -21,6 +21,14 @@
       "version": "1.0.0",
       "author": { "name": "smektor" },
       "keywords": ["github", "issues", "productivity", "workflow", "pr"]
+    },
+    {
+      "name": "pr-fix",
+      "source": "./plugins/pr-fix",
+      "description": "Applies fixes requested via a PR review submission or a top-level PR comment.",
+      "version": "1.0.0",
+      "author": { "name": "smektor" },
+      "keywords": ["github", "pr", "review", "fix", "workflow"]
     }
   ]
 }

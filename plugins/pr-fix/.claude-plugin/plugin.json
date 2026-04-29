@@ -1,0 +1,11 @@
+{
+  "name": "pr-fix",
+  "version": "1.0.0",
+  "description": "Applies fixes requested via a PR review submission or a top-level PR comment.",
+  "author": {
+    "name": "smektor",
+    "email": "romuald.wedel@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": ["github", "pr", "review", "fix", "workflow"]
+}
