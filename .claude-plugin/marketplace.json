@@ -13,6 +13,14 @@
       "version": "1.0.0",
       "author": { "name": "wjankowski" },
       "keywords": ["tasks", "productivity", "session", "export"]
+    },
+    {
+      "name": "implement-task",
+      "source": "./plugins/implement-task",
+      "description": "Implements a GitHub issue end-to-end: reads the issue, creates a branch, writes code, commits, and opens a PR.",
+      "version": "1.0.0",
+      "author": { "name": "wjankowski" },
+      "keywords": ["github", "issues", "productivity", "workflow", "pr"]
     }
   ]
 }
