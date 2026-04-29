@@ -1,6 +1,6 @@
 ---
-name: pr-comment-fix
-description: Apply fixes requested via a PR review submission or a top-level PR comment. Use when invoked via the claude-pr-comment workflow with a Trigger field in the prompt.
+name: pr-fix
+description: Apply fixes requested via a PR review submission or a top-level PR comment. Use this skill when the user invokes /pr-fix or when invoked via the claude-pr-comment workflow with a Trigger field in the prompt. Always use this skill when the user says "pr-fix", "fix pr comments", "/pr-fix", or similar.
 ---
 
 # PR Comment Fix
