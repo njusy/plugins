@@ -70,6 +70,21 @@ To get the current git username: `git config user.name` (slugify if needed).
 
 Read relevant existing code before writing. Follow the architecture rules in CLAUDE.md. Keep changes minimal and focused on the issue scope.
 
+### Test failures
+
+If tests fail after your changes, attempt to fix them. After **3 failed fix attempts**, stop trying to fix the tests. Proceed to Step 6 and Step 7 as normal, then post a comment on the PR:
+
+```bash
+gh pr comment <pr-url> --body "$(cat <<'EOF'
+⚠️ Tests are failing and could not be fixed after 3 attempts.
+
+<brief description of what is failing and why>
+EOF
+)"
+```
+
+Do not continue retrying or making further changes to fix the tests.
+
 ## Step 6 — Commit
 
 Stage only the files changed for this issue. Follow the commit message format from CLAUDE.md.

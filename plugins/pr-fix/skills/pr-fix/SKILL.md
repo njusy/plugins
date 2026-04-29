@@ -46,11 +46,34 @@ If any inline comment is ambiguous, post a PR comment asking for clarification a
 
 The `Comment body` in the prompt describes what needs to change. Read the relevant files and locate the code to fix. If the request is ambiguous, post a PR comment asking for clarification and stop.
 
-## Step 4 — Implement the fix
+## Step 4 — Read CLAUDE.md and apply conventions
 
-Read relevant existing code before writing. Follow the rules in CLAUDE.md. Keep changes minimal and focused on the requested fixes.
+Read the repository's CLAUDE.md (if present) before writing any code:
 
-## Step 5 — Commit
+```bash
+cat CLAUDE.md 2>/dev/null || true
+```
+
+Apply all conventions, patterns, and instructions found there throughout the remaining steps.
+
+## Step 5 — Implement the fix
+
+Read relevant existing code before writing. Keep changes minimal and focused on the requested fixes.
+
+## Step 6 — Run linter and tests
+
+After implementing, run the linter and test suite as specified in CLAUDE.md (or the project's standard commands). If tests fail, fix them and re-run. **After 3 failed fix attempts, stop:** push the current branch and post a PR comment describing what is broken and why further automated fixing was abandoned:
+
+```bash
+gh pr comment <pr_number> --repo <repo> --body "$(cat <<'EOF'
+Automated fix stopped after 3 attempts: <one sentence describing the failing test/lint issue and what was tried>.
+EOF
+)"
+```
+
+Then stop — do not push an additional commit beyond what was already staged.
+
+## Step 7 — Commit
 
 Stage only the files changed for this fix.
 
@@ -61,7 +84,7 @@ git commit -m "<pr_number>-fix: one sentence message"
 
 Message format uses `<pr_number>-fix:` prefix since there is no issue number.
 
-## Step 6 — Push
+## Step 8 — Push
 
 ```bash
 git push
@@ -69,7 +92,7 @@ git push
 
 The branch is already tracked. Retry up to 3 times with a 5-second delay on network failure.
 
-## Step 7 — Acknowledge the fix
+## Step 9 — Acknowledge the fix
 
 ### Trigger: `review_submitted`
 
