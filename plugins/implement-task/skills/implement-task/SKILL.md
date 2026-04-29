@@ -18,9 +18,13 @@ Use `$REPO` for all `gh` commands throughout this workflow.
 
 ## Step 1 — Get the issue number
 
-If the user didn't provide an issue number, ask: "Which issue number should I work on?"
+**If the user's prompt includes a full issue description or task specification (not just a number), skip Steps 1 and 2 entirely and use that description as the issue context.** Derive the issue title/scope from the prompt text and proceed to Step 3.
+
+Otherwise, use provided issue number.
 
 ## Step 2 — Read the issue
+
+> Skip this step if the issue description was provided directly in the prompt.
 
 ```bash
 gh issue view <number> --repo $REPO
@@ -67,7 +71,7 @@ git commit -m "<number>: one sentence message"
 git push -u origin <branch>
 ```
 
-Follow the PR title format from CLAUDE.md. PR body must include `Closes #<number>`.
+Follow the PR title format from CLAUDE.md. If there is an issue number, PR body must include `Closes #<number>`; otherwise omit that line.
 
 ```bash
 gh pr create --title "<number>: short description" --body "$(cat <<'EOF'
