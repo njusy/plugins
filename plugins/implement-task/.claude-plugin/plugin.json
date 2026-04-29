@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Implements a GitHub issue end-to-end: reads the issue, creates a branch, writes code, commits, and opens a PR.",
   "author": {
-    "name": "wjankowski",
+    "name": "smektor",
     "email": "romuald.wedel@gmail.com"
   },
   "license": "MIT",
