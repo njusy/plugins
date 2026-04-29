@@ -30,11 +30,26 @@ Otherwise, use provided issue number.
 gh issue view <number> --repo $REPO
 ```
 
-Read the full issue body and any linked context before proceeding.
+Read the full issue body, comments, and any linked context before proceeding.
 
 > **Network failures:** For any git or gh CLI command that contacts the network
 > (git pull, git push, gh pr create, etc.), retry up to 3 times with a 5-second
 > delay between attempts before giving up.
+
+> **STOP RULE — Unclear issue:**
+> If the issue is unclear or you need clarification before you can implement it correctly,
+> do **NOT** make any file changes and do **NOT** pause the session to ask questions interactively.
+> Instead:
+> 1. Post a comment on the issue with your questions:
+>    ```bash
+>    gh issue comment <number> --repo $REPO --body "$(cat <<'EOF'
+>    I need clarification before I can implement this issue:
+>
+>    <your questions here>
+>    EOF
+>    )"
+>    ```
+> 2. End the session immediately. Do not proceed to Step 3.
 
 ## Step 3 — Sync main
 
