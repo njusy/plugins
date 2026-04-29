@@ -57,7 +57,7 @@ plugins/
 Register this repo as a marketplace once — Claude Code will then let you browse and install any plugin from it:
 
 ```
-/plugin marketplace add smektor/njusy-plugins
+/plugin marketplace add njusy/plugins
 ```
 
 Verify it was added:
