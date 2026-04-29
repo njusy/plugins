@@ -2,7 +2,6 @@
 name: tasks-export
 description: Runs the full pipeline — distills session into tasks, confirms with the user, then saves as JSON. Use when the user wants to do both steps at once.
 when_to_use: Use when the user invokes `/tasks-export` or says "export tasks", "run tasks export".
-disable-model-invocation: true
 allowed-tools: Bash Read Write
 effort: medium
 ---
