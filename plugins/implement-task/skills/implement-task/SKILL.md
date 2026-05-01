@@ -70,6 +70,13 @@ To get the current git username: `git config user.name` (slugify if needed).
 
 Read relevant existing code before writing. Follow the architecture rules in CLAUDE.md. Keep changes minimal and focused on the issue scope.
 
+### TDD & Missing Imports
+
+If you are writing tests before the implementation (TDD), and the tests import files or symbols that do not exist yet:
+1. Create empty template files or stubs for those imports.
+2. Ensure the tests can be parsed and run (e.g., using skip/pending markers).
+3. Confirm that the "skeleton" PR passes CI without the actual implementation.
+
 ### Test failures
 
 If tests fail after your changes, attempt to fix them. After **3 failed fix attempts**, stop trying to fix the tests. Proceed to Step 6 and Step 7 as normal, then post a comment on the PR:

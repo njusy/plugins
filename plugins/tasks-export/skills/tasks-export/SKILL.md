@@ -33,14 +33,15 @@ Print the distilled task list in the conversation. Do **not** write files during
 ```
 ## Tasks
 
-| # | Title | Priority | Model | Depends on |
-|---|-------|----------|-------|------------|
-| 1 | Short human-readable name | high/medium/low | haiku/sonnet/opus | — or task # |
+| # | Title | Priority | Model | Max turns | Depends on |
+|---|-------|----------|-------|-----------|------------|
+| 1 | Short human-readable name | high/medium/low | haiku/sonnet/opus | 30 | — or task # |
 ...
 
 ### Task 1 — <Title>
 **Priority:** high | medium | low
 **Model:** haiku | sonnet | opus
+**Max turns:** 30
 **Depends on:** none | Task N
 **Description:** [Context line.] [Imperative body: what to implement, with exact project-relative paths.] [Patterns: see `<file>` for the existing pattern — omit if nothing comparable exists.] Out of scope: [what this task explicitly does NOT include]. Verify: [Checkpoint list — items the agent should confirm are present or correctly applied before finishing. No commands to run — tests, linting, and type checks are handled externally.]
 ```
@@ -68,12 +69,17 @@ Read `skills/tasks-export/template.json` for the JSON schema and a worked exampl
    - **Yes** (split into two): the task produces a concrete, deterministic artifact (file, function, API endpoint, schema) whose behaviour can be asserted without running an LLM or requiring heavy integration setup.
    - **No** (keep as one): pure configuration, infrastructure, prompt/skill authoring, or anything where writing a test has more overhead than value.
    When splitting, produce two tasks linked by `depends_on`:
-   - **Test task** (order N): Write the test file(s) with every test marked as skipped/pending so the PR passes without implementation. Name exact test file paths. Model: haiku if a single file. Description must end with: "All tests must use the framework's skip/pending marker — do not implement the feature."
+   - **Test task** (order N): Write the test file(s) with every test marked as skipped/pending so the PR passes without implementation. Name exact test file paths. Model: haiku if a single file. Description must end with: "All tests must use the framework's skip/pending marker — do not implement the feature. If the tests import files or symbols that do not exist yet, create empty template files or stubs to satisfy the imports."
    - **Implement task** (order N+1): Implement the feature and remove the skip/pending markers. Depends on the test task. Description must include: "Enable the tests written in the previous task by removing skip/pending markers."
    Do not apply TDD splitting to the test task itself, infrastructure tasks, or tasks already flagged as low priority.
 5. **Assign priority**: high = blocks other work; medium = important but not blocking; low = deferred/nice-to-have.
 6. **Write self-contained descriptions.** For each task:
-   - **Model** — `haiku` for a single named file with a clearly bounded change; `sonnet` for multi-file work or when an existing pattern must be understood first; **Default to `sonnet` when in doubt.**
+   - **Model** — Assign based on complexity:
+     - `haiku`: Very simple tasks, updates, or small fixes; tasks where an implementation example is already provided; or "obvious" changes (e.g., data structures).
+     - `sonnet`: Tasks requiring context from multiple files, or when the functionality is foundational or crucial for the application.
+     - `opus`: Extremely complex tasks or major architectural shifts.
+     - **Default to `sonnet` when in doubt.**
+   - **Max turns** — Always set to `30`.
    - **Context line** (first sentence of Description): only add for sonnet/opus when the agent genuinely needs to understand existing code first — `"Before implementing, read \`<dir-or-files>\` to understand <pattern>."` Omit for haiku tasks and any task where the file path and change are already explicit.
    - **Body** — imperative, no "as discussed" references. Name exact project-relative paths for every file to create or edit. State the target directory explicitly when creating new files.
    - **Patterns** — if a similar implementation exists, name its path: `"Patterns: see \`<file>\` for the existing pattern."` Omit if nothing comparable exists.
